@@ -22,7 +22,7 @@ public class Principal {
 		mostrarMenu(nivel);
 
 	}
-
+	
 	private static void mostrarMenu(int nivel) {
 		int opcion = 0;
 		do {
