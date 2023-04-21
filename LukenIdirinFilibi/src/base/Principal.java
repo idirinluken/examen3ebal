@@ -1,10 +1,13 @@
 package base;
 
 import java.util.Scanner;
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Principal {
-	private static final Logger LOGGER = Logger.getLogger(Principal.class.getName());
+	
+	private static final Logger LOGGER = Logger.getLogger("selecciones.log");
 
 	private static Scanner teclado = new Scanner(System.in);
 	
@@ -39,6 +42,17 @@ public class Principal {
 			System.out.println();
 			System.out.print("Introduce opci�n: ");
 			opcion = teclado.nextInt();
+			
+			//Declaras Nivel a el LOGGER
+			LOGGER.setLevel(Level.ALL);
+			//Declaras el Handler(Consola)
+			ConsoleHandler ch = new ConsoleHandler();
+			//Pones un nivel
+			ch.setLevel(Level.FINE);
+			//Añadir a LOG el HANDLER
+			LOGGER.addHandler(ch);
+			LOGGER.log(Level.FINE,"Seleccion: " + opcion);
+			
 			switch (opcion) {
 			case 1:
 				nivel = leerNivelAgua();
@@ -93,7 +107,7 @@ public class Principal {
 	 * @param nivel es el int que crea el metodo leerNivelAgua()
 	 * @return devuelve un boolean para saber si el nivel del agua es mayor o menor que 50
 	 */
-	static boolean solicitarPermiso(int nivel) {
+	public static boolean solicitarPermiso(int nivel) {
 		if (nivel > 50) {
 			return true;
 		}else {
