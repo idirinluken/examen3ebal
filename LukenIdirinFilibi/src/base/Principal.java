@@ -1,13 +1,16 @@
 package base;
 
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Principal {
 	
-	private static final Logger LOGGER = Logger.getLogger("selecciones.log");
+	private static final Logger LOGGER = Logger.getLogger(Principal.class.getName());
 
 	private static Scanner teclado = new Scanner(System.in);
 	
@@ -43,14 +46,28 @@ public class Principal {
 			System.out.print("Introduce opci�n: ");
 			opcion = teclado.nextInt();
 			
+			//Declaras log
+			LOGGER.setLevel(Level.ALL);
+			//Creas fileHandler
+			Handler fileHandler = null;
+			try {
+				fileHandler = new FileHandler("./logs/selecciones.log", true);
+			}catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+			//Añades fileHandler para log
+			LOGGER.addHandler(fileHandler);
+			LOGGER.log(Level.INFO, "Seleccion: " + opcion);
+			
 			//Declaras Nivel a el LOGGER
 			LOGGER.setLevel(Level.ALL);
 			//Declaras el Handler(Consola)
 			ConsoleHandler ch = new ConsoleHandler();
-			//Pones un nivel
-			ch.setLevel(Level.FINE);
 			//Añadir a LOG el HANDLER
 			LOGGER.addHandler(ch);
+			//Pones un nivel
+			ch.setLevel(Level.ALL);
 			LOGGER.log(Level.FINE,"Seleccion: " + opcion);
 			
 			switch (opcion) {
