@@ -87,6 +87,12 @@ public class Principal {
 		}
 	}
 	
+	/**
+	 * el metodo recibe la variable (int) nivel y comprueba si es mayor o menor que 50 devolviendo un boolean true si es mayor y false si es menor
+	 * @author Luken Idirin
+	 * @param nivel es el int que crea el metodo leerNivelAgua()
+	 * @return devuelve un boolean para saber si el nivel del agua es mayor o menor que 50
+	 */
 	static boolean solicitarPermiso(int nivel) {
 		if (nivel > 50) {
 			return true;
